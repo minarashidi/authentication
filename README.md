@@ -78,9 +78,6 @@ There are two ways to call backend APIs:
 
 In a real-world application, we might need to have a separate (frontend) application to interact with backend service.
 
-
-Nice sum up, I'm definitely with JDBC client; because of its Simplicity and no magic behind It's better readable and maintable over others and 
-full control of DB queries, no magic even for crud operations 
 ---
 
 ### The Need for Monitoring and Observability
