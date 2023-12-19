@@ -1,0 +1,8 @@
+server:
+  shutdown: immediate
+
+spring.liquibase.enabled: true
+
+logging.level:
+  root: INFO
+  liquibase: INFO

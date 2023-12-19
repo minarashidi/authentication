@@ -1,0 +1,34 @@
+server:
+  port: 8080
+  # graceful shutdown makes sure we have time to finnish any ongoing rest requests before terminating
+  # default value will be 30s before terminating
+  shutdown: graceful
+
+spring:
+  threads:
+    virtual:
+      enabled: true #To enable virtual threads in Spring Boot 3.2 we just need to set this property
+  application:
+    name: authentication
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authentication?prepareThreshold=0
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    hikari.connectionTimeout: 100000
+    hikari.idleTimeout: 600000
+    hikari.maxLifetime: 1800000
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog-master.xml
+
+springdoc:
+  api-docs:
+    path: /authentication-docs
+  swagger-ui:
+    path: /authentication-docs/swagger-ui-custom.html
+
+logging.level:
+  root: INFO
+  liquibase: INFO

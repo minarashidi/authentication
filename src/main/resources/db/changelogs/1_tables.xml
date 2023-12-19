@@ -1,0 +1,37 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet id="20231212-0" author="Mina">
+    <sql>
+      CREATE TABLE IF NOT EXISTS authentication.user
+      (
+        id BIGSERIAL NOT NULL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+      );
+    </sql>
+    <rollback>
+      DROP TABLE authentication.user;
+    </rollback>
+  </changeSet>
+
+  <changeSet id="20231212-1" author="Mina">
+    <sql>
+      CREATE TABLE IF NOT EXISTS authentication.login_attempt
+      (
+        id BIGSERIAL NOT NULL PRIMARY KEY,
+        email VARCHAR(255) NOT NULL,
+        success BOOLEAN DEFAULT false,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+        );
+    </sql>
+    <rollback>
+      DROP TABLE authentication.login_attempt;
+    </rollback>
+  </changeSet>
+
+</databaseChangeLog>
